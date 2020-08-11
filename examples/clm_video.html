@@ -229,8 +229,10 @@
 					requestAnimFrame(drawLoop);
 					overlayCC.clearRect(0, 0, vid_width, vid_height);
 					//psrElement.innerHTML = "score :" + ctrack.getScore().toFixed(4);
-					if (ctrack.getCurrentPosition()) { //ここで座標のポジションとる
+					var pos = ctrack.getCurrentPosition();
+					if (pos) { //ここで座標のポジションとる
 						ctrack.draw(overlay);
+						disp(pos);
 					}
 				}
 
@@ -245,6 +247,12 @@
 				document.addEventListener('clmtrackrIteration', function(event) {
 					stats.update();
 				}, false);
+
+				//******** mouth's coordinate********/
+				function disp(pos){
+					var a = pos[44];
+					console.log("mouth 44: " + a);
+				}
 
 			</script>
 		</div>
