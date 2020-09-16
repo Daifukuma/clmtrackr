@@ -24,7 +24,7 @@
 				-ms-filter : fliph; /*IE*/
 				filter : fliph; /*IE*/
 
-				
+
 			}
 
 			#videoel {
@@ -34,7 +34,7 @@
 				-ms-filter : fliph; /*IE*/
 				filter : fliph; /*IE*/
 
-				
+
 			}
 
 			#container {
@@ -234,8 +234,10 @@
 					requestAnimFrame(drawLoop);
 					overlayCC.clearRect(0, 0, vid_width, vid_height);
 					//psrElement.innerHTML = "score :" + ctrack.getScore().toFixed(4);
-					if (ctrack.getCurrentPosition()) {
+					var pos = ctrack.getCurrentPosition();
+					if (pos) {
 						ctrack.draw(overlay);
+						disp(pos);
 					}
 					var cp = ctrack.getCurrentParameters();
 
@@ -344,6 +346,12 @@
 				document.addEventListener('clmtrackrIteration', function(event) {
 					stats.update();
 				}, false);
+
+				//******** mouth's coordinate ********/
+				function disp(pos){
+					var a = pos[44];
+					console.log("mouth 44: " + a);
+				}
 
 			</script>
 		</div>
