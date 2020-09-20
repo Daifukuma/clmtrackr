@@ -93,6 +93,7 @@
 		<script src="./js/libs/utils.js"></script>
 		<script src="../build/clmtrackr.js"></script>
 		<script src="./js/libs/Stats.js"></script>
+		
 		<div id="content">
 			<h2>Smile 判定</h2>
 			<div id="container">
@@ -132,6 +133,10 @@
 				var vid_height = vid.height;
 				var overlay = document.getElementById('overlay');
 				var overlayCC = overlay.getContext('2d');
+				var stampclap = new Image();
+				var stampclap2 = new Image();
+				stampclap.src = "./media/clap.png";
+				stampclap2.src = "./media/clap2.png";
 
 				/*********** Setup of video/webcam and checking for webGL support *********/
 
@@ -232,6 +237,8 @@
 					//psrElement.innerHTML = "score :" + ctrack.getScore().toFixed(4);
 					var pos = ctrack.getCurrentPosition();
 					showData(pos);
+					drawStamp(pos, stampclap, 62, 2.5, 0.0, 0.0);
+					drawStamp(pos, stampclap2, 33, 3.0, 0.0, -1.8);
 					if (pos) { //ここで座標のポジションとる
 						ctrack.draw(overlay);
 						disp(pos);
@@ -248,6 +255,19 @@
 					}
 					var dat = document.getElementById("dat");
 					dat.innerHTML = str;
+				}
+
+				//スタンプを表示させる
+				function drawStamp(pos, img, bNo, scale, hShift, vShift) {
+					var clap = pos[32][0] - pos[27][0];
+					var clap2 = pos[62][1] - pos[33][1];
+					var wScale = clap / img.width;
+					var imgW = img.width * scale * wScale;
+					var imgH = img.height * scale * wScale;
+					var imgL = pos[bNo][0] - imgW / 2 + clap + hShift;
+					var imgT = pos[bNo][1] - imgH / 2 + clap2 + vShift;
+//					console.log(context.drawImage);
+					overlayCC.drawImage(img, imgL, imgT, imgW, imgH);
 				}
 
 				/*********** Code for stats **********/
