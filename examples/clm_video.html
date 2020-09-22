@@ -66,6 +66,23 @@
 			.nohide {
 				display : block;
 			}
+
+			hr {
+				border-top: 1px dashed #bbb;
+			}
+
+			hr:after {
+			  content: '\002702';
+			  display: inline-block;
+			  position: relative;
+			  top: -12px;
+			  left: 40px;
+			  padding: 0 3px;
+			  background: #f0f0f0;
+			  color: #bbb;
+			  font-size: 18px;
+			}
+
 		</style>
 		<script>
 			// getUserMedia only works over https in Chrome 47+, so we redirect to https. Also notify user if running from file.
@@ -128,8 +145,11 @@
 					</p>
 				</div>
 			</div>
+			<hr>
 			<div id="dat"></div>
+			<hr>
 			<div id="dat2"></div>
+			<br>
 			<a href="https://github.com/auduno/clmtrackr"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
 			<script>
 				var vid = document.getElementById('videoel');
@@ -251,8 +271,8 @@
 					var parameters = ctrack.getCurrentParameters();
 					var emotion = classifier.meanPredict(parameters);
 					if(emotion[5].value > 0.4) {
-						drawStamp(pos, stampclap, 50, 0.6, 0.0, 0.0);
-						drawStamp(pos, stampclap2, 0, 0.6, 0.0, 0.0);
+						drawStamp(pos, stampclap, 50, 1, 0.0, 0.0);
+						drawStamp(pos, stampclap2, 0, 1, 0.0, -1.8);
 					}
 					showEmotionData(emotion);
 					if (pos) { //ここで座標のポジションとる
@@ -290,7 +310,7 @@
 				function showEmotionData(emo) {
 					var str2 = "";
 					for(var i = 0; i < emo.length; i++) {
-						str2 += emo[i].emotion + ": " + emo[i].value.toFixed(1) + "<br>";
+						str2 += emo[i].emotion + ": " + emo[i].value.toFixed(1) + "　　";
 					}
 					var dat2 = document.getElementById("dat2");
 					dat2.innerHTML = str2;
