@@ -159,8 +159,10 @@
 				var overlayCC = overlay.getContext('2d');
 				var stampclap = new Image();
 				var stampclap2 = new Image();
+				var stampwarn = new Image();
 				stampclap.src = "./media/clap.png";
 				stampclap2.src = "./media/clap2.png";
+				stampwarn.src = "./media/warn.png";
 
 				/*********** Setup of video/webcam and checking for webGL support *********/
 
@@ -270,7 +272,11 @@
 //					drawStamp(pos, stampclap2, 33, 3.0, 0.0, -1.8);
 					var parameters = ctrack.getCurrentParameters();
 					var emotion = classifier.meanPredict(parameters);
-					if(emotion[5].value > 0.4) {
+					var facesize = pos[14][0];
+					console.log(facesize);
+					if(facesize < 350) {
+						drawStamp(pos, stampwarn, 50, 1, 0.0, 0.0);
+					}else if(emotion[5].value > 0.4) {
 						drawStamp(pos, stampclap, 50, 1, 0.0, 0.0);
 						drawStamp(pos, stampclap2, 0, 1, 0.0, -1.8);
 					}
