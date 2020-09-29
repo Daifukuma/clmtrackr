@@ -274,7 +274,7 @@
 					var emotion = classifier.meanPredict(parameters);
 					var facesize = pos[14][0];
 					console.log(facesize);
-					if(facesize < 350) {
+					if(facesize < 330) {
 						drawStamp(pos, stampwarn, 50, 1, 0.0, 0.0);
 					}else if(emotion[5].value > 0.4) {
 						drawStamp(pos, stampclap, 50, 1, 0.0, 0.0);
