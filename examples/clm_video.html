@@ -163,6 +163,10 @@
 				stampclap.src = "./media/clap.png";
 				stampclap2.src = "./media/clap2.png";
 				stampwarn.src = "./media/warn.png";
+				var audio1 = new Audio();
+				audio1.src = "./sound/toofar.mp3";
+				var audio2 = new Audio();
+				audio2.src = "./sound/tooclose.mp3";
 
 				/*********** Setup of video/webcam and checking for webGL support *********/
 
@@ -276,6 +280,10 @@
 					console.log(facesize);
 					if(facesize < 330) {
 						drawStamp(pos, stampwarn, 50, 1, 0.0, 0.0);
+						audio1.play();
+					}else if(facesize > 390) {
+						drawStamp(pos, stampwarn, 50, 1, 0.0, 0.0);
+						audio2.play();
 					}else if(emotion[5].value > 0.4) {
 						drawStamp(pos, stampclap, 50, 1, 0.0, 0.0);
 						drawStamp(pos, stampclap2, 0, 1, 0.0, -1.8);
