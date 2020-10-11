@@ -167,6 +167,8 @@
 				audio1.src = "./sound/toofar.mp3";
 				var audio2 = new Audio();
 				audio2.src = "./sound/tooclose.mp3";
+				var audio3 = new Audio();
+				audio3.src = "./sound/goodlook.mp3";
 
 				/*********** Setup of video/webcam and checking for webGL support *********/
 
@@ -278,15 +280,16 @@
 					var emotion = classifier.meanPredict(parameters);
 					var facesize = pos[14][0];
 					console.log(facesize);
-					if(facesize < 330) {
+					if(facesize < 345) {
 						drawStamp(pos, stampwarn, 50, 1, 0.0, 0.0);
 						audio1.play();
-					}else if(facesize > 390) {
+					}else if(facesize > 400) {
 						drawStamp(pos, stampwarn, 50, 1, 0.0, 0.0);
 						audio2.play();
-					}else if(emotion[5].value > 0.4) {
+					}else if(emotion[5].value > 0.3) {
 						drawStamp(pos, stampclap, 50, 1, 0.0, 0.0);
 						drawStamp(pos, stampclap2, 0, 1, 0.0, -1.8);
+						audio3.play();
 					}
 					showEmotionData(emotion);
 					if (pos) { //ここで座標のポジションとる
