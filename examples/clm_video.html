@@ -150,7 +150,6 @@
 			<hr>
 			<div id="dat2"></div>
 			<br>
-			<a href="https://github.com/auduno/clmtrackr"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
 			<script>
 				var vid = document.getElementById('videoel');
 				var vid_width = vid.width;
@@ -280,7 +279,7 @@
 					var emotion = classifier.meanPredict(parameters);
 					var facesize = pos[14][0];
 					console.log(facesize);
-					if(facesize < 345) {
+					if(facesize < 330) {
 						drawStamp(pos, stampwarn, 50, 1, 0.0, 0.0);
 						audio1.play();
 					}else if(facesize > 400) {
