@@ -266,6 +266,16 @@
 				var classifier = new emotionClassifier();
 				classifier.init(emotionModel);
 
+				//瞬き検出
+				var oldLeftEye = new Array(2);
+				var oldRightEye = new Array(2);
+				var oldNose = new Array(2);
+
+				var leftMode = 0;
+				var leftInterval = 10;
+
+				var closeFlag = false;
+
 				//描写
 				function drawLoop() {
 					requestAnimFrame(drawLoop);
@@ -277,7 +287,8 @@
 //					drawStamp(pos, stampclap2, 33, 3.0, 0.0, -1.8);
 					var parameters = ctrack.getCurrentParameters();
 					var emotion = classifier.meanPredict(parameters);
-					var facesize = pos[14][0];
+					var facesize = 0;
+					facesize = pos[14][0];
 					console.log(facesize);
 					if(facesize < 330) {
 						drawStamp(pos, stampwarn, 50, 1, 0.0, 0.0);
